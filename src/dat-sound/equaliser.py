@@ -9,8 +9,12 @@ import random
 
 import sync
 
+from readwav import get_eql
+
+FPS = 16
+
 s = ledremote.RemoteLedScreen('10.68.0.11', 8000)
-metronome = sync.Metronome(fps=2.)
+metronome = sync.Metronome(fps=FPS)
 metronome.start()
 
 def equaliser(dat):
@@ -23,9 +27,14 @@ def clean():
         for x in range(12):
             s[x, y] = 0, 0, 0
 
+frame = 0
+
 while True:
-    dat = [random.randint(0, 10) for x in range(12)]
+    #dat = [random.randint(0, 10) for x in range(12)]
+    dat = get_eql(frame, FPS)[:12]
+    frame += 44100/FPS
     clean()
     equaliser(dat)
     s.push()
     metronome.sync()
+
