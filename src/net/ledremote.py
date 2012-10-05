@@ -1,7 +1,7 @@
 import sys, os
 import socket
-from transform import Transform
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/../'))
+from transform import Transform
 
 class RemoteLedScreen(object):
     def __init__(self, host, port, dim=(12,10)):
