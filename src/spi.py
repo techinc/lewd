@@ -39,7 +39,7 @@ class SPI(object):
         self.mode = mode
         assert 0 <= mode < 4
         m = ctypes.create_string_buffer(chr(mode))
-        fcntl.ioctl(self.fd, SPI_IOC_WR_MODE, ctypes.addressof(m))
+        fcntl.ioctl(self.fd, SPI_IOC_WR_MODE, m)
 
     def transfer(self, tx=None, readlen=None):
         if not tx:
