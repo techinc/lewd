@@ -45,6 +45,6 @@ Initialise a SPIScreen object.
 
 if __name__ == '__main__':
     screen = SPIScreen()
-    screen.load_frame( (x*20, y*24, (x+y)*11) for x in xrange(12) for y in xrange(10) )
+    screen.load_frame( [(x*20, y*24, (x+y)*11) for x in xrange(12)] for y in xrange(10) )
     screen.push()
 
